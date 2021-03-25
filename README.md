@@ -1,0 +1,2 @@
+# dotfiles
+Fitxers de configuració
