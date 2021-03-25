@@ -11,6 +11,12 @@ git clone https://github.com/enricg/dotfiles.git
 ```
 ## Creació d'enllaços simbòlics de tots els directoris ( */ ) al directori dotfiles cap al directori $HOME
 
+| directori | descripció                                                          |
+| -         | -                                                                   |
+| ~         | és l'origen                                                         |
+| */        | directori on es creen el enllaços. Ha d'haver-hi el directori creat |
+
+
 ```BASH
 cd ~/.dotfiles
 stow -v -t ~ */
