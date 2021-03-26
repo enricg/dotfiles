@@ -1,0 +1,98 @@
+#!/bin/sh
+
+# Use neovim for vim if present.
+[ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
+
+# Verbosity and settings that you pretty much just always are going to want.
+alias \
+	ls='lsd -Fla' \
+	cp="cp -iv" \
+	mv="mv -iv" \
+	rm="rm -vI" \
+	mkdir="mkdir -pv" \
+	yt="youtube-dl --add-metadata -i" \
+	yta="yt -x -f bestaudio/best" \
+	ffmpeg="ffmpeg -hide_banner"
+
+# Colorize commands when possible.
+alias \
+	grep="grep --color=auto" \
+	diff="diff --color=auto" \
+	ccat="highlight --out-format=ansi"
+
+# These common commands are just too long! Abbreviate them.
+alias \
+	ka="killall" \
+	g="git" \
+	trem="transmission-remote" \
+	YT="youtube-viewer" \
+	sdn="sudo shutdown -h now" \
+	f="$FILE" \
+	e="$EDITOR" \
+	v="$EDITOR" \
+	p="sudo pacman" \
+	#xi="sudo xbps-install" \
+	#xr="sudo xbps-remove -R" \
+	xq="xbps-query" \
+		z="zathura"
+
+	alias \
+		magit="nvim -c MagitOnly" \
+		ref="shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc" \
+		weath="less -S ${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport" \
+		tmux="tmux -f ${XDG_CONFIG_HOME:-$HOME/.config}/tmux/tmux.conf"
+
+	alias \
+		userlist="cut -d: -f1 /etc/passwd | sort" \
+		wget="wget -c" \
+		myip="curl http://ipecho.net/plain; echo" \
+		free="free -m" \
+		SS="sudo systemctl" \
+		jctl="journalctl -p 3 -xb" \
+
+#alias \
+	#calcurse-caldav='CALCURSE_CALDAV_PASSWORD=$(pass show Cloud/calcurse) calcurse-caldav'
+	#calcurse="calcurse -D ~/.config/calcurse" \
+
+# Crear arxiu zip
+function makezip() { zip -r "${1%%/}.zip" "$1" ; }
+
+#shdl(){ curl -0 $(curl -s http://sci-hub.tw/"$@" | grep location.href | grep -o http.*pdf) ;}
+
+#se(){ du -a ~/.scripts/* ~/.config/* | awk '{print $2}' | fzf | xargs -r $EDITOR ;}
+
+#sv(){ vcopy "$(du -a ~/.scripts/* ~/.config/* | awk '{print $2}' | fzf)" ;}
+
+#vf(){ fzf | xargs -r -I % $EDITOR % ;}
+
+#-------- Transmission CLI {{{
+tsm-clearcompleted() {
+transmission-remote -l | grep 100% | grep Done | \
+	awk '{print $1}' | xargs -n 1 -I % transmission-remote -t % -r ;}
+
+tsm() { transmission-remote --list ;}
+# numbers of ip being blocked by the blocklist
+# credit: smw from irc #transmission
+tsm-count() { echo "Blocklist rules:" $(curl -s --data \
+	'{"method": "session-get"}' localhost:9091/transmission/rpc -H \
+	"$(curl -s -D - localhost:9091/transmission/rpc | grep X-Transmission-Session-Id)" \
+	| cut -d: -f 11 | cut -d, -f1) ;
+}
+tsm-blocklist() { $PATH_SCRIPTS/blocklist.sh ;}		# update blocklist
+tsm-daemon() { transmission-daemon ;}
+tsm-quit() { killall transmission-daemon ;}
+tsm-altspeedenable() { transmission-remote --alt-speed ;}	# limit bandwidth
+tsm-altspeeddisable() {	transmission-remote --no-alt-speed ;}	# dont limit bandwidth
+tsm-add() { transmission-remote --add "$1" ;}
+tsm-askmorepeers() { transmission-remote -t"$1" --reannounce ;}
+tsm-pause() { transmission-remote -t"$1" --stop ;}		# <id> or all
+tsm-start() { transmission-remote -t"$1" --start ;}		# <id> or all
+tsm-purge() { transmission-remote -t"$1" --remove-and-delete ;} # delete data also
+tsm-remove() { transmission-remote -t"$1" --remove ;}		# leaves data alone
+tsm-info() { transmission-remote -t"$1" --info ;}
+tsm-speed() { while true;do clear; transmission-remote -t"$1" -i | grep Speed;sleep 1;done ;}
+tsm-ncurse() { transmission-remote-cli ;}
+
+# GIT
+alias \
+	multipull="find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} pull \;"

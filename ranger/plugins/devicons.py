@@ -1,0 +1,1 @@
+/home/enric/.config/ranger/plugins/ranger_devicons/devicons.py
