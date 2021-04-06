@@ -48,7 +48,7 @@ macro b set browser "tsp mpv --ontop --no-border --force-window --autofit=500x28
 macro o set browser "tmux split-window && tmux send-keys '$BROWSERCLI %u && tmux kill-pane\n'"; open-in-browser ; set browser "$BROWSER %u"
 macro r set browser "tmux split-window && tmux send-keys 'rtv -l %u && tmux kill-pane\n'"; open-in-browser ; set browser "$BROWSER %u"
 macro y set browser "echo -n %u | xclip -selection clipboard"; open-in-browser ; set browser "$BROWSER %u"
-macro s set browser "tmux split-window && tmux send-keys 'ranger ~/.newsbeuter/saved_articles && tmux kill-pane\n'" ; open-in-browser ; set browser "$BROWSER %u"
+#macro s set browser "tmux split-window && tmux send-keys 'ranger ~/.config/newsboat/saved_articles && tmux kill-pane\n'" ; open-in-browser ; set browser "$BROWSER %u"
 
 highlight all "---.*---" yellow
 highlight feedlist ".*(0/0))" black
