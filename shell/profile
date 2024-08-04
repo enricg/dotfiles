@@ -13,7 +13,8 @@ unsetopt PROMPT_SP
 # Default programs:
 export EDITOR="nvim"
 export TERMINAL="st"
-export BROWSER="qutebrowser"
+#export BROWSER="qutebrowser"
+export BROWSER="/usr/bin/palemoon"
 
 # ~/ Clean-up:
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -21,10 +22,10 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
 # Personal folders:
-export XDG_DOCUMENTS_DIR="$HOME/Documentos"
-export XDG_DOWNLOAD_DIR="$HOME/Descargas"
+export XDG_DOCUMENTS_DIR="$HOME/Documents"
+export XDG_DOWNLOAD_DIR="$HOME/Baixades"
 export XDG_MUSIC_DIR="$HOME/Música"
-export XDG_PICTURES_DIR="$HOME/Imágenes"
+export XDG_PICTURES_DIR="$HOME/Imtges"
 export XDG_VIDEOS_DIR="$HOME/Vídeos"
 
 #export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
@@ -68,6 +69,7 @@ export QT_QPA_PLATFORMTHEME="gtk2"	# Have QT use gtk2 theme.
 export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
 export AWT_TOOLKIT="MToolkit wmname LG3D"	#May have to install wmname
 export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
+export RANGER_DEVICONS_SEPARATOR=" "
 
 # This is the list for lf icons:
 export LF_ICONS="di=📁:\

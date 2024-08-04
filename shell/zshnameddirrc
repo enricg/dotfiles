@@ -1,12 +1,12 @@
 hash -d cac=/home/enric/.cache 
 hash -d cf=/home/enric/.config 
-hash -d D=/home/enric/Descargas 
-hash -d d=/home/enric/Documentos 
+hash -d D=/home/enric/Baixades
+hash -d d=/home/enric/Documents 
 hash -d dt=/home/enric/.local/share 
 hash -d h=/home/enric 
 hash -d m=/home/enric/Música 
 hash -d mn=/mnt 
-hash -d i=/home/enric/Imágenes 
+hash -d i=/home/enric/Imatges
 hash -d bi=/home/enric/.local/bin 
 hash -d src=/home/enric/.local/src 
 hash -d v=/home/enric/Vídeos 
