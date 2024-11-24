@@ -1,4 +1,5 @@
 "HTML
+	autocmd FileType html inoremap ,ti <!DOCTYPE html><Enter><html><Enter><head><Enter><title></title><Enter></head><Enter><body><Enter><++><Enter></body><Enter></html><Esc>5kf>a
 	autocmd FileType html inoremap &<space> &amp;<space>
 	autocmd FileType html inoremap ,1 <h1></h1><Enter><++><Esc>kli
 	autocmd FileType html inoremap ,2 <h2></h2><Enter><++><Esc>kli

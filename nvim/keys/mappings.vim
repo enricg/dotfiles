@@ -30,8 +30,8 @@ else
   inoremap kj <Esc>
 
   " Easy CAPS
-  " inoremap <c-u> <ESC>viwUi
-  " nnoremap <c-u> viwU<Esc>
+  inoremap <c-u> <ESC>viwUi
+  nnoremap <c-u> viwU<Esc>
 
   " TAB in general mode will move to text buffer
   nnoremap <silent> <TAB> :bnext<CR>
@@ -41,8 +41,8 @@ else
   " Move selected line / block of text in visual mode
   " shift + k to move up
   " shift + j to move down
-  xnoremap K :move '<-2<CR>gv-gv
-  xnoremap J :move '>+1<CR>gv-gv
+ " xnoremap K :move '<-2<CR>gv-gv
+ " xnoremap J :move '>+1<CR>gv-gv
 
   " Alternate way to save
   nnoremap <silent> <C-s> :w<CR>
@@ -78,6 +78,12 @@ else
 
 endif
 
-" Better nav for omnicomplete
-inoremap <expr> <c-j> ("\<C-n>")
-inoremap <expr> <c-k> ("\<C-p>")
+" Per moure linies cap amunt i cap avall
+nnoremap <C-j> :m .+1<CR>==
+nnoremap <C-k> :m .-2<CR>==
+inoremap <C-j> <Esc>:m .+1<CR>==gi
+inoremap <C-k> <Esc>:m .-2<CR>==gi
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
+
+nnoremap <F2> :inoremap<CR>
