@@ -4,11 +4,14 @@
 [ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
 
 # Verbosity and settings that you pretty much just always are going to want.
+#alias \
 alias \
-	ls='lsd -Fla' \
+	ls="ls -hN --color=auto --group-directories-first" \
+	#ls='lsd -Fla' \
 	cp="cp -iv" \
 	mv="mv -iv" \
 	rm="rm -vI" \
+	bc="bc -ql" \
 	mkdir="mkdir -pv" \
 	yt="youtube-dl --add-metadata -i" \
 	yta="yt -x -f bestaudio/best" \
@@ -16,10 +19,10 @@ alias \
 
 # Colorize commands when possible.
 alias \
-	grep="grep --color=auto" \
+	ccat="highlight --out-format=ansi" \
 	diff="diff --color=auto" \
-	ccat="highlight --out-format=ansi"
-
+	grep="grep --color=auto" \
+	ip="ip -color=auto"
 # These common commands are just too long! Abbreviate them.
 alias \
 	ka="killall" \
@@ -31,28 +34,30 @@ alias \
 	e="$EDITOR" \
 	v="$EDITOR" \
 	p="sudo pacman" \
+	n="sudo npm" \
+	ni="sudo npm install -g" \
+	xq="xbps-query" \
+	z="zathura"
 	#xi="sudo xbps-install" \
 	#xr="sudo xbps-remove -R" \
-	xq="xbps-query" \
-		z="zathura"
 
-	alias \
-		magit="nvim -c MagitOnly" \
-		ref="shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc" \
-		weath="less -S ${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport" \
-		tmux="tmux -f ${XDG_CONFIG_HOME:-$HOME/.config}/tmux/tmux.conf"
+alias \
+	magit="nvim -c MagitOnly" \
+	ref="shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc" \
+	weath="less -S ${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport" \
+	tmux="tmux -f ${XDG_CONFIG_HOME:-$HOME/.config}/tmux/tmux.conf"
 
-	alias \
-		userlist="cut -d: -f1 /etc/passwd | sort" \
-		wget="wget -c" \
-		myip="curl http://ipecho.net/plain; echo" \
-		free="free -m" \
-		SS="sudo systemctl" \
-		jctl="journalctl -p 3 -xb" \
-
-#alias \
-	#calcurse-caldav='CALCURSE_CALDAV_PASSWORD=$(pass show Cloud/calcurse) calcurse-caldav'
-	#calcurse="calcurse -D ~/.config/calcurse" \
+alias \
+	userlist="cut -d: -f1 /etc/passwd | sort" \
+	wget="wget -c" \
+	myip="curl http://ipecho.net/plain; echo" \
+	free="free -m" \
+	SS="sudo systemctl" \
+	jctl="journalctl -p 3 -xb" \
+	emp="cd Documents/Empreses/"
+alias \
+	calcurse-caldav='CALCURSE_CALDAV_PASSWORD=$(pass show Cloud/calcurse) calcurse-caldav' \
+	calcurse="calcurse -D ~/.config/calcurse"
 
 # Crear arxiu zip
 function makezip() { zip -r "${1%%/}.zip" "$1" ; }
@@ -95,4 +100,15 @@ tsm-ncurse() { transmission-remote-cli ;}
 
 # GIT
 alias \
-	multipull="find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} pull \;"
+	multipull="find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} pull \;" \
+	ipe='curl ipinfo.io/ip' \
+	hg='history | grep $1' \
+	paclist="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'" \
+	google='ping 8.8.8.8' \
+	logs='journalctl -f' \
+	gcom='git-commander'
+alias \
+	check-moon='curl wttr.in/Moon' \
+	check-weather='curl wttr.in/Weather' \
+	mwindades='sudo mkdir -pv /tmp/dadeswin && sudo mount /dev/nvme0n1p5 /tmp/dadeswin/ && cd /tmp/dadeswin' \
+	umwindades='sudo umount /tmp/dadeswin'

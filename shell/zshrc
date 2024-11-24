@@ -7,10 +7,24 @@ fi
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+# source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Arxiu d'àlies
 source ~/.dotfiles/shell/aliasrc
+source ~/.profile
+
+# Arxiu d'historial
+HISTFILE=~/.zsh_history
+# Número d'ordres a guardar
+HISTSIZE=1000
+SAVEHIST=1000
+
+# Compartir historial amb totes les sessions de terminal
+setopt SHARE_HISTORY
+
+# neofetch
+
+plugins=(zsh-syntax-highlighting command-not-found)

@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 # profile file. Runs on login. Environmental variables are set here.
 
@@ -6,9 +6,9 @@
 # to clean up.
 
 # Adds `~/.local/bin` to $PATH
-export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}:$HOME/.scripts"
+#export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
 
-unsetopt PROMPT_SP
+#unsetopt PROMPT_SP
 
 # Default programs:
 export EDITOR="nvim"
@@ -164,5 +164,3 @@ ex=🎯:\
 #
 # Switch escape and caps if tty and no passwd required:
 sudo -n loadkeys ${XDG_DATA_HOME:-$HOME/.local/share}/larbs/ttymaps.kmap 2>/dev/null
-
-[ -f ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc ] && source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc
