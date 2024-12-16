@@ -13,7 +13,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'lukesmithxyz/vimling'
 Plug 'preservim/nerdtree'
 Plug 'tpope/vim-surround'
-" Plug 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki'
 Plug 'ap/vim-css-color'
 Plug 'bling/vim-airline'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
