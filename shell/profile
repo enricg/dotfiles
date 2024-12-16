@@ -166,3 +166,4 @@ ex=🎯:\
 sudo -n loadkeys ${XDG_DATA_HOME:-$HOME/.local/share}/larbs/ttymaps.kmap 2>/dev/null
 
 [ -f ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc ] && source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc
+[ -f ${XDG_CONFIG_HOME:-$HOME/.config}/shell/funcionsrc ] && source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/funcionsrc
