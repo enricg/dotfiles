@@ -193,6 +193,8 @@ map <leader>da :setlocal spell! spelllang=en<CR>
 
 " Nerd tree
 map <leader>n :Vexplore<CR>
+map <leader>nn :Hexplore<CR>
+
 
 " vimling:
 nm <leader><leader>d :call ToggleDeadKeys()<CR>
