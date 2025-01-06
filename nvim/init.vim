@@ -11,7 +11,7 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
 Plug 'jreybert/vimagit'
 Plug 'junegunn/goyo.vim'
 Plug 'lukesmithxyz/vimling'
-Plug 'preservim/nerdtree'
+"Plug 'preservim/nerdtree'
 Plug 'tpope/vim-surround'
 Plug 'vimwiki/vimwiki'
 Plug 'ap/vim-css-color'
@@ -192,7 +192,7 @@ map <leader>de :setlocal spell! spelllang=es<CR>
 map <leader>da :setlocal spell! spelllang=en<CR>
 
 " Nerd tree
-map <leader>n :NERDTreeToggle<CR>
+"map <leader>n :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 if has('nvim')
 	let NERDTreeBookmarksFile = stdpath('data') . '/NERDTreeBookmarks'

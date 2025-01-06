@@ -37,3 +37,23 @@ tsm-remove() { transmission-remote -t"$1" --remove ;}		# leaves data alone
 tsm-info() { transmission-remote -t"$1" --info ;}
 tsm-speed() { while true;do clear; transmission-remote -t"$1" -i | grep Speed;sleep 1;done ;}
 tsm-ncurse() { transmission-remote-cli ;}
+
+# Hosts
+addhost() {
+    if [ "$#" -ne 2 ]; then
+      echo "[i] Usage: addhost <ip> <hostname>"
+      return 1
+    fi
+
+    ip="$1"
+    hostname="$2"
+    if grep -q "^$ip" /etc/hosts; then
+      sudo sed -i "/^$ip/s/$/ $hostname/" /etc/hosts
+      echo "[+] Appended $hostname to existing entry for $ip in /etc/hosts"
+    else
+      echo "$ip $hostname" | sudo tee -a /etc/hosts > /dev/null
+      echo "[+] Added new entry: $ip $hostname to /etc/hosts"
+    fi
+
+    grep "^$ip" /etc/hosts
+}

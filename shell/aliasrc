@@ -13,7 +13,7 @@ alias \
 	rm="rm -vI" \
 	bc="bc -ql" \
 	mkdir="mkdir -pv" \
-	yt="youtube-dl --add-metadata -i" \
+	yt="yt-dlp --add-metadata -i" \
 	yta="yt -x -f bestaudio/best" \
 	ffmpeg="ffmpeg -hide_banner"
 
@@ -70,6 +70,10 @@ alias \
 	gcom='git-commander'
 alias \
 	check-moon='curl wttr.in/Moon' \
-	check-weather='curl wttr.in/Weather' \
-	mwindades='sudo mkdir -pv /tmp/dadeswin && sudo mount /dev/nvme0n1p5 /tmp/dadeswin/ && cd /tmp/dadeswin' \
-	umwindades='sudo umount /tmp/dadeswin'
+	check-weather='curl wttr.in/Weather'
+
+# Instal·lació
+alias \
+	pi="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S" \
+	pd="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns" \
+	pa="sudo pacman -Syu"
