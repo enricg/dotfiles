@@ -192,13 +192,7 @@ map <leader>de :setlocal spell! spelllang=es<CR>
 map <leader>da :setlocal spell! spelllang=en<CR>
 
 " Nerd tree
-"map <leader>n :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-if has('nvim')
-	let NERDTreeBookmarksFile = stdpath('data') . '/NERDTreeBookmarks'
-else
-	let NERDTreeBookmarksFile = '~/.vim' . '/NERDTreeBookmarks'
-endif
+map <leader>n :Vexplore<CR>
 
 " vimling:
 nm <leader><leader>d :call ToggleDeadKeys()<CR>
