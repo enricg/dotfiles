@@ -26,7 +26,6 @@ alias \
 # These common commands are just too long! Abbreviate them.
 alias \
 	ka="killall" \
-	g="git" \
 	trem="transmission-remote" \
 	YT="youtube-viewer" \
 	sdn="sudo shutdown -h now" \
@@ -40,7 +39,9 @@ alias \
 	z="zathura"
 	#xi="sudo xbps-install" \
 	#xr="sudo xbps-remove -R" \
-
+alias \
+	g="git" \
+	gpush="git push origin master"
 alias \
 	magit="nvim -c MagitOnly" \
 	ref="shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc" \
