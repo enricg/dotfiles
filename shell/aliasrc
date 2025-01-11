@@ -64,7 +64,6 @@ alias \
 	multipull="find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} pull \;" \
 	ipe='curl ipinfo.io/ip' \
 	hg='history | grep $1' \
-	paclist="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'" \
 	google='ping 8.8.8.8' \
 	logs='journalctl -f' \
 	gcom='git-commander'
@@ -74,6 +73,7 @@ alias \
 
 # Instal·lació
 alias \
+	paclist="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'" \
 	pi="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S" \
 	pd="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns" \
 	pa="sudo pacman -Syu"
