@@ -284,6 +284,7 @@ source ~/.dotfiles/nvim/keys/keymapshtml.vim
 source ~/.dotfiles/nvim/keys/keymapsmd.vim
 source ~/.dotfiles/nvim/keys/keymapscss.vim
 source ~/.dotfiles/nvim/keys/keymapsphp.vim
+source ~/.dotfiles/nvim/keys/keymapsjs.vim
 source ~/.dotfiles/nvim/keys/mappings.vim
 
 " Function for toggling the bottom statusbar:
@@ -304,3 +305,6 @@ function! ToggleHiddenAll()
 	endif
 endfunction
 nnoremap <leader>h :call ToggleHiddenAll()<CR>
+
+" Activar sintaxis completa
+:set omnifunc=syntaxcomplete#Complete
