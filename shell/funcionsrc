@@ -6,10 +6,6 @@ function makezip() { zip -r "${1%%/}.zip" "$1" ; }
 
 #se(){ du -a ~/.scripts/* ~/.config/* | awk '{print $2}' | fzf | xargs -r $EDITOR ;}
 
-#sv(){ vcopy "$(du -a ~/.scripts/* ~/.config/* | awk '{print $2}' | fzf)" ;}
-
-#vf(){ fzf | xargs -r -I % $EDITOR % ;}
-
 #-------- Transmission CLI {{{
 tsm-clearcompleted() {
 transmission-remote -l | grep 100% | grep Done | \
@@ -57,3 +53,12 @@ addhost() {
 
     grep "^$ip" /etc/hosts
 }
+
+# fuzzi
+#vf(){ fzf | xargs -r -I % $EDITOR % ;}
+#sv(){ vcopy "$(du -a ~/.scripts/* ~/.config/* | awk '{print $2}' | fzf)" ;}
+fzf-surfraw() { surfraw "$(cat ~/.config/surfraw/bookmarks | sed '/^$/d' | sort -n | fzf -e)" ;}
+
+cmdfu() { curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" \
+	| sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" ;}
+down4me() { curl -s "http://www.downforeveryoneorjustme.com/$1" | sed '/just you/!d;s/<[^>]*>//g';}
