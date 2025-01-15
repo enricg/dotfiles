@@ -78,3 +78,18 @@ alias \
 	pi="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S" \
 	pd="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns" \
 	pa="sudo pacman -Syu"
+
+# Accesos a directoris personals
+alias \
+	ghome="cd ~" \
+	gbaixades="cd ~/Baixades" \
+	gdocuments="cd ~/Documents" \
+	gescriptori="cd ~/Escriptori" \
+	gimatges="cd ~/Imatges" \
+	gmusica="cd ~/Música" \
+	gprojects="cd ~/Projects" \
+	gpublic="cd ~/Públic" \
+	gtemplates="cd ~/Templates" \
+	gvideos="cd ~/Vídeos" \
+	gmedia="cd /run/media" \
+	hf='eval "$(history | fzf | sed "s/^[ ]*[0-9]*[ ]*//")"'
