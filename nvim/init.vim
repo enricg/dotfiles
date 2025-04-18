@@ -31,6 +31,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'williamboman/mason.nvim'
 "Plug 'VonHeikemen/lsp-zero.nvim' {'branch': 'v4.x'}
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
@@ -135,8 +136,8 @@ EOF
 
 set title
 set bg=light
-set go=a
 set mouse=a
+" set go=a
 colorscheme slate
 set nohlsearch
 set clipboard+=unnamedplus

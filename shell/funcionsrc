@@ -54,11 +54,105 @@ addhost() {
     grep "^$ip" /etc/hosts
 }
 
+cmdfu() { curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" \
+	| sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" ;}
+	down4me() { curl -s "http://www.downforeveryoneorjustme.com/$1" | sed '/just you/!d;s/<[^>]*>//g';}
+
 # fuzzi
 #vf(){ fzf | xargs -r -I % $EDITOR % ;}
 #sv(){ vcopy "$(du -a ~/.scripts/* ~/.config/* | awk '{print $2}' | fzf)" ;}
 fzf-surfraw() { surfraw "$(cat ~/.config/surfraw/bookmarks | sed '/^$/d' | sort -n | fzf -e)" ;}
+# Advanced customization of fzf options via _fzf_comprun function
+# - The first argument to the function is the name of the command.
+# - You should make sure to pass the rest of the arguments ($@) to fzf.
+_fzf_comprun() {
+  local command=$1
+  shift
 
-cmdfu() { curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" \
-	| sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" ;}
-down4me() { curl -s "http://www.downforeveryoneorjustme.com/$1" | sed '/just you/!d;s/<[^>]*>//g';}
+  case "$command" in
+    cd)           fzf --preview 'tree -C {} | head -200'   "$@" ;;
+    export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
+    ssh)          fzf --preview 'dig {}'                   "$@" ;;
+    *)            fzf --preview 'bat -n --color=always {}' "$@" ;;
+  esac
+}
+
+# Use fd and fzf to get the args to a command.
+# Works only with zsh
+# Examples:
+# f mv # To move files. You can write the destination after selecting the files.
+# f 'echo Selected:'
+# f 'echo Selected music:' --extension mp3
+# fm rm # To rm files in current directory
+# f() {
+#     sels=( "${(@f)$(fd "${fd_default[@]}" "${@:2}"| fzf)}" )
+#     test -n "$sels" && print -z -- "$1 ${sels[@]:q:q}"
+# }
+
+# # Like f, but not recursive.
+# fm() f "$@" --max-depth 1
+#
+# # Deps
+# fzf-noempty () {
+# 	local in="$(</dev/stdin)"
+# 	test -z "$in" && (
+# 		exit 130
+# 	) || {
+# 		ec "$in" | fzf "$@"
+# 	}
+# }
+# ec () {
+# 	if [[ -n $ZSH_VERSION ]]
+# 	then
+# 		print -r -- "$@"
+# 	else
+# 		echo -E -- "$@"
+# 	fi
+# }
+
+# fkill - kill processes - list only the ones you can kill. Modified the earlier script.
+fkill() {
+    local pid
+    if [ "$UID" != "0" ]; then
+        pid=$(ps -f -u $UID | sed 1d | fzf -m | awk '{print $2}')
+    else
+        pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+    fi
+
+    if [ "x$pid" != "x" ]
+    then
+        echo $pid | xargs kill -${1:-9}
+    fi
+}
+
+# fjrnl - Search JRNL headlines
+fjrnl() {
+	title=$(jrnl --short | fzf --tac --no-sort) &&
+		jrnl -on "$(echo $title | cut -c 1-16)" $1
+	}
+
+function cd() {
+    if [[ "$#" != 0 ]]; then
+        builtin cd "$@";
+        return
+    fi
+    while true; do
+        local lsd=$(echo ".." && ls -p | grep '/$' | sed 's;/$;;')
+        local dir="$(printf '%s\n' "${lsd[@]}" |
+            fzf --reverse --preview '
+                __cd_nxt="$(echo {})";
+                __cd_path="$(echo $(pwd)/${__cd_nxt} | sed "s;//;/;")";
+                echo $__cd_path;
+                echo;
+                ls -p --color=always "${__cd_path}";
+        ')"
+        [[ ${#dir} != 0 ]] || return 0
+        builtin cd "$dir" &> /dev/null
+    done
+}
+
+fman() {
+    man -k . | fzf -q "$1" --prompt='man> '  --preview $'echo {} | tr -d \'()\' | awk \'{printf "%s ", $2} {print $1}\' | xargs -r man | col -bx | bat -l man -p --color always' | tr -d '()' | awk '{printf "%s ", $2} {print $1}' | xargs -r man
+}
+# Get the colors in the opened man page itself
+export MANPAGER="sh -c 'col -bx | bat -l man -p --paging always'"

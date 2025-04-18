@@ -56,6 +56,10 @@ export PATH_SCRIPTS="$HOME/.scripts"
 export DICS="/usr/share/stardict/dic/"
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
+export FZF_COMPLETION_TRIGGER='~~' # Use ~~ as the trigger sequence instead of the default **
+export FZF_COMPLETION_OPTS='--border --info=inline' # Options to fzf command
+export FZF_COMPLETION_PATH_OPTS='--walker file,dir,follow,hidden' # Options for path completion (e.g. vim **<TAB>)
+export FZF_COMPLETION_DIR_OPTS='--walker dir,follow' # Options for directory completion (e.g. cd **<TAB>)
 export LESS=-R
 export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')"
 export LESS_TERMCAP_md="$(printf '%b' '[1;36m')"
@@ -167,3 +171,7 @@ sudo -n loadkeys ${XDG_DATA_HOME:-$HOME/.local/share}/larbs/ttymaps.kmap 2>/dev/
 
 [ -f ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc ] && source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc
 [ -f ${XDG_CONFIG_HOME:-$HOME/.config}/shell/funcionsrc ] && source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/funcionsrc
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/enric/.lmstudio/bin"
+. "/home/enric/.local/share/cargo/env"

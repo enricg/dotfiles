@@ -74,3 +74,7 @@
 	autocmd FileType tex inoremap ,x \begin{xlist}<Enter>\ex<Space><Enter>\end{xlist}<Esc>kA<Space>
 	autocmd FileType tex nnoremap ,up /usepackage<Enter>o\usepackage{}<Esc>i
 	autocmd FileType tex vnoremap , <ESC>`<i\{<ESC>`>2la}<ESC>?\\{<Enter>a
+
+	" Diapositives
+	autocmd FileType tex inoremap ,ds \begin{block}{}<Enter><Enter>\end{block}<Enter><++><Esc>2ki
+	autocmd FileType tex inoremap ,di \begin{figure}<Enter>\centering<Enter>\includegraphics[width=1.0\columnwidth]{}<Enter>\end{figure}<Enter><++><Esc>2kf}i

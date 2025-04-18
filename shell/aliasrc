@@ -92,4 +92,5 @@ alias \
 	gtemplates="cd ~/Templates" \
 	gvideos="cd ~/Vídeos" \
 	gmedia="cd /run/media" \
-	hf='eval "$(history | fzf | sed "s/^[ ]*[0-9]*[ ]*//")"'
+	hf='eval "$(history | fzf | sed "s/^[ ]*[0-9]*[ ]*//")"' \
+	af='eval $(alias | awk -F "=" "{print \$1}" | fzf --prompt="Selecciona un àlies: " --height=10)'
